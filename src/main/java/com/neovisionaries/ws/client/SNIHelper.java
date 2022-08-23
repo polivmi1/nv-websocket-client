@@ -46,6 +46,7 @@ class SNIHelper
 
     private static void initialize() throws Exception
     {
+        try {
         // Constructor which represents javax.net.ssl.SNIHostName(String).
         // The class is available since Java 1.8 / Android API Level 24 (Android 7.0)
         sSNIHostNameConstructor = Misc.getConstructor(
@@ -55,6 +56,9 @@ class SNIHelper
         // The method is available since Java 1.8 / Android API Level 24 (Android 7.0)
         sSetServerNamesMethod = Misc.getMethod(
                 "javax.net.ssl.SSLParameters", "setServerNames", new Class<?>[] { List.class });
+        } catch (NoClassDefFoundError e) {
+            
+        }
     }
 
 
